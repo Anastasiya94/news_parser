@@ -34,10 +34,10 @@ class Parser_model extends CI_Model
 
     function parsing_data()
     {
-        echo ">> Clear database (to store only last 30 days)...\n";
+        print(">> Clear database (to store only last 30 days)...\n");
         $this->clear_database(2592000);
 
-        echo ">> Creating Chrome Driver...\n";
+        print(">> Creating Chrome Driver...\n");
 
         $_options = new ChromeOptions();
         $_options->addExtensions(array(getcwd().'\Adblock-Plus_v1.13.4.crx'));
@@ -45,7 +45,7 @@ class Parser_model extends CI_Model
         $_caps->setCapability( ChromeOptions::CAPABILITY, $_options);
         $_driver = RemoteWebDriver::create('http://localhost:4444/wd/hub', $_caps, 5000);
 
-        echo ">> Starting parse loop...";
+        print(">> Starting parse loop...");
 
         $_news_site_list= array("lenta.ru" => "https://lenta.ru/rss",
             "news.mail.ru" => "https://news.mail.ru/rss",
@@ -59,7 +59,7 @@ class Parser_model extends CI_Model
                 $_xml = new SimpleXMLElement($_xmlStr);
                 $_items = $_xml->xpath('/rss/channel/item');
 
-                echo "\n>> Website: " . $_site . ", " . count($_items) . " items ";
+                print("\n>> Website: " . $_site . ", " . count($_items) . " items ");
 
                 $_count_item = 0;
                 $_percentage_border = 10;
@@ -114,13 +114,13 @@ class Parser_model extends CI_Model
                                 $this->add_article($_articles_preview);
                                 if ($_count_item*100/count($_items) > $_percentage_border)
                                 {
-                                    echo $_count_item*100/count($_items) . "% ";
+                                    print($_count_item*100/count($_items) . "% ");
                                     $_percentage_border += 10;
                                 }
                                 break;
                             } else
                             {
-                                echo "found identical on " . $_count_item . " item, breaking loop";
+                                print("found identical on " . $_count_item . " item, breaking loop");
                                 break 2;
                             }
                         }
@@ -130,10 +130,10 @@ class Parser_model extends CI_Model
         }
         catch (Exception $_exc)
         {
-            echo "\n[!] Exception while parsing: " . $_exc->getMessage() . "";
+            print("\n[!] Exception while parsing: " . $_exc->getMessage());
         }
 
-        echo "\n>> Finished parse loop, destroying driver...\n";
+        print("\n>> Finished parse loop, destroying driver...\n");
 
         $_driver->quit();
         //system("taskkill /F /IM chromedriver.exe");

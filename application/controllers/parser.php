@@ -14,11 +14,11 @@ class Parser extends CI_Controller
             try {
                 $this->parser_model->parsing_data();
             }catch (Exception $_exc) {
-                echo 'Выброшено исключение: ',  $_exc->getMessage(), "\n";
+                print("Выброшено исключение: " .  $_exc->getMessage() . "\n");
             }
-            $_sec = rand(50,120);
-            echo "------WAITING " . $_sec . " seconds for the next attempt---------\n";
-            sleep($_sec);
+            $sec = rand(50,120);
+            print("------WAITING " . $sec . " seconds for the next attempt---------\n");
+            sleep($sec);
         }
     }
 }
