@@ -28,7 +28,7 @@ CREATE TABLE `articles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1591 DEFAULT CHARSET=utf8;
  ```
-**Запуск парсера сайтов:**
+**Запуск парсера сайтов:**<br/>
 1) открыть cmd, зайти в директорию проекта из выполнить команду<br/>
 ```cmd
 java -jar selenium-server-standalone-3.6.0.jar -enablePassThrough false 
