@@ -73,10 +73,10 @@ class Parser_model extends CI_Model
         try {
             //Win
             if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                pclose(popen('start /B cmd /C "php index.php parser index >NUL 2>NUL"', 'r'));
+                pclose(popen('start /B cmd /C "php index.php Parser index >NUL 2>NUL"', 'r'));
             //Linux
             } else {
-                exec('php index.php parser index > /dev/null 2>/dev/null &');
+                exec('php index.php Parser index > /dev/null 2>/dev/null &');
             }
         } catch (Exception $_exc) {
             echo "\n[!] Exception while parsing: " . $_exc->getMessage();

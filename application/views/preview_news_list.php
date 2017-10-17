@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?=html_entity_decode($item["description"]);?>
           </div>
             <div id="full_content_link" style="float: right">
-                <a href="<?php echo base_url();?>index.php/pages/article/<?=$item["id"];?>" class="btn btn-link">Подробнее</a>
+                <a href="<?php echo base_url();?>index.php/Pages/article/<?=$item["id"];?>" class="btn btn-link">Подробнее</a>
             </div>
         </div>
     </div>
