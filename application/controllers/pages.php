@@ -6,6 +6,17 @@ class Pages extends CI_Controller {
 
     public function index()
     {
+        //Запуск парсера при устаревании базы
+        $this->load->model("parser_model");
+        $this->parser_model->start_parser_if_needed();
+
+        //Проверка на отсутствие записей в базе
+        if (!$this->parser_model->has_any_article()) {
+            echo "В данный момент в БД нет статей, база данных обновляется, попробуйте обновить страницу через несколько секунд";
+            return;
+        }
+
+        //Загрузка страницы
         $this->load->model("news_model");
         $config['base_url'] = base_url().'index.php/pages/index/';
 

@@ -9,16 +9,6 @@ class Parser extends CI_Controller
     {
         $this->load->model("parser_model");
         set_time_limit(0);
-        while(true)
-        {
-            try {
-                $this->parser_model->parsing_data();
-            }catch (Exception $_exc) {
-                print("Выброшено исключение: " .  $_exc->getMessage() . "\n");
-            }
-            $sec = rand(50,120);
-            print("------WAITING " . $sec . " seconds for the next attempt---------\n");
-            sleep($sec);
-        }
+        $this->parser_model->parsing_data();
     }
 }
