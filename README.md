@@ -28,6 +28,8 @@ CREATE TABLE `articles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1591 DEFAULT CHARSET=utf8;
  ```
+6) Задать настройки базы данных в файле <code>application/config/database.php</code> ('username', 'password', 'database')
+
 **Запуск парсера сайтов:**<br/>
 1) открыть cmd, зайти в директорию проекта из выполнить команду<br/>
 ```cmd
